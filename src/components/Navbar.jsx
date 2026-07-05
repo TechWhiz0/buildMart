@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react'
 import { COMPANY } from '../data/company.js'
-
-const LINKS = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#products', label: 'Materials' },
-  { href: '#process', label: 'Process' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
-]
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { lang, setLang, t } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -30,18 +23,27 @@ export default function Navbar() {
         </a>
 
         <nav className={`navbar__links ${open ? 'is-open' : ''}`} aria-label="Primary">
-          {LINKS.map((l) => (
+          {t.nav.links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
             </a>
           ))}
           <a href="#contact" className="btn btn--dark navbar__cta navbar__cta--mobile" onClick={() => setOpen(false)}>
-            Get Quote
+            {t.nav.getQuote}
           </a>
         </nav>
 
+        <button
+          type="button"
+          className="lang-toggle"
+          onClick={() => setLang(lang === 'hi' ? 'en' : 'hi')}
+          aria-label={lang === 'hi' ? 'Switch to English' : 'हिंदी में बदलें'}
+        >
+          {lang === 'hi' ? 'EN' : 'हिं'}
+        </button>
+
         <a href="#contact" className="btn btn--dark navbar__cta">
-          Get Quote
+          {t.nav.getQuote}
         </a>
 
         <button

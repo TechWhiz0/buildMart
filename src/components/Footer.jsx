@@ -1,6 +1,9 @@
 import { COMPANY } from '../data/company.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="footer">
       <div className="container footer__top">
@@ -11,8 +14,8 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bar">
-        <p>Copyright © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
-        <p>{COMPANY.tagline}</p>
+        <p>Copyright © {new Date().getFullYear()} {COMPANY.name}. {t.footer.rights}</p>
+        <p>{t.footer.tagline}</p>
       </div>
     </footer>
   )

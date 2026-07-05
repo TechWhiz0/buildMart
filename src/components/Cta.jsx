@@ -1,22 +1,24 @@
 import { whatsappLink } from '../data/company.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import SplitTitle from './SplitTitle.jsx'
 
 export default function Cta() {
+  const { t } = useLanguage()
+
   return (
     <section className="cta-banner">
       <div className="container cta-banner__inner reveal">
-        <p className="cta-banner__eyebrow">Prayagraj supply</p>
-        <SplitTitle lines={['Need Sand,', 'Stone or Bricks?']} className="cta-banner__title" />
+        <p className="cta-banner__eyebrow">{t.cta.eyebrow}</p>
+        <SplitTitle lines={t.cta.titleLines} className="cta-banner__title" />
         <p className="cta-banner__sub">
-          Call us for today&apos;s rate and delivery timing. We supply directly from
-          our yard in Azad Nagar to your site.
+          {t.cta.sub}
         </p>
         <div className="cta-banner__actions">
           <a href="#contact" className="btn btn--dark btn--lg">
-            Contact Us
+            {t.cta.contactUs}
           </a>
-          <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn--outline btn--lg">
-            Get a Quote
+          <a href={whatsappLink(t.whatsappMessage)} target="_blank" rel="noreferrer" className="btn btn--outline btn--lg">
+            {t.cta.getQuote}
           </a>
         </div>
       </div>
